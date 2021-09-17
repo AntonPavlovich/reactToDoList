@@ -6,15 +6,16 @@ import "./userCard.css";
 class UserCard extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       userNumber: 0,
     };
   }
 
   changeUser =()=> {
-    const { userNumber } = this.state;
-    
+    let { userNumber } = this.state;
+    if(userNumber > 6){
+      userNumber = -1
+    }
     return this.setState({
       userNumber: userNumber + 1,
     });

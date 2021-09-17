@@ -9,10 +9,24 @@
 .imgWrapper{
   height: 300px;
   border-radius: inherit;
+  position: relative;
 }
-
+.hideBlock{
+  display: none;
+}
 .initials{
-  background-color: black;
+  content: '';
+  border-radius: inherit;
+  background-color: rgba(0, 0, 0, 0.849);
   position: absolute;
-  inset: 0;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:whitesmoke;
+  font-weight: bold;
 }

@@ -11,27 +11,30 @@ class UserImg extends React.Component {
   }
 
   errorHandler = () => {
-    const { hide } = this.state;
-
     this.setState({
-      hide: !hide,
+      hide: true
     });
   };
+
+  loadHandler = () => {
+    this.setState({
+      hide : false
+    })
+  }
 
   render() {
     const { className, src, alt } = this.props;
     const { hide } = this.state;
 
-    const img = <img onError={this.errorHandler} className={className} src={src} alt={alt}
+    const img = <img onLoad={this.loadHandler} onError={this.errorHandler} className={className} src={src} alt={alt}
       />
     const par = <p className="initials">{alt}</p>
-   
-    
  
+    const elem = hide ? img : par;
+
     return (
       <div className="imgWrapper">
-         {img}
-         {par} 
+         {elem}
       </div>
     );
   }

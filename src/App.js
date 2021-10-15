@@ -1,16 +1,15 @@
-import React from 'react';
-import data from './data'
-import UserCard from './components/UserCard/UserCard';
-import './App.css'
+import React from "react";
+import "./App.css";
+import Calendar from "./components/Calendar/Calendar";
 
-function App(props){
+function App(props) {
   return (
-    <React.Fragment>
-      <UserCard
-      user = {data}
-      /> 
-    </React.Fragment>
-  )
+    <React.StrictMode>
+      <React.Fragment>
+        <Calendar />
+      </React.Fragment>
+    </React.StrictMode>
+  );
 }
 
 export default App;

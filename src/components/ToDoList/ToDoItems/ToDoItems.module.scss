@@ -1,0 +1,15 @@
+.task {
+  display: flex;
+  border: 1px solid rgb(121, 121, 121);
+  width: 500px;
+  margin: 10px auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.done {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.582);
+}

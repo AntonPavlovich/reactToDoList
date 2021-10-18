@@ -1,45 +1,29 @@
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { TASK_BODY_SCHEMA } from "../../../utils/schema";
 
-import styles from "./ToDoInput.module.scss";
-import { TASK_BODY_SCHEMA } from "./../../../utils/schema";
+import styles from './ToDoInput.module.scss'
+const Todoinput = (props) => {
 
-import cx from "classnames";
+  const {addTask} = props;
 
-const ToDoInput = (props) => {
-  const submitHandler = (values, formikBag) => {
-    props.createTask(values.task);
-    formikBag.resetForm();
-  };
-
-  const classNames = cx(styles.form);
+  const handleSubmit = (values,formikBag) => {
+    addTask(values.task) 
+    formikBag.resetForm()
+  }
 
   return (
-    <Formik
-      initialValues={{ task: "" }}
-      validationSchema={TASK_BODY_SCHEMA}
-      onSubmit={submitHandler}
-    >
-      {(props) => {
-        return (
-          <Form className={classNames}>
-            <h1>Lets go input new tasks!</h1>
-            <Field className={styles.input} type="text" name="task" />
-            <ErrorMessage name="task">
-              {(msg) => (
-                <div className={styles.errMessage}>
-                  its a required field ok??
-                </div>
-              )}
-            </ErrorMessage>
-            <button className={styles.addTaskBtn} type="submit">
-              +
-            </button>
-          </Form>
-        );
-      }}
+    <div className ={styles.formWrapper}>
+    <h1 className={styles.heading}>Your personal todos</h1>
+    <Formik onSubmit={handleSubmit} validationSchema={TASK_BODY_SCHEMA} initialValues={{ task: "" }}>
+      <Form className={styles.form}>
+        <Field className={styles.input} name="task" />
+        <ErrorMessage name="task"></ErrorMessage>
+        <button className={styles.btn} type='submit'><i className='fa fa-plus'></i></button>
+      </Form> 
     </Formik>
+    </div>
   );
 };
 
-export default ToDoInput;
+export default Todoinput;

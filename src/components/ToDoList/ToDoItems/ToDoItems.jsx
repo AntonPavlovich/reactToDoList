@@ -1,46 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./ToDoItems.module.scss";
+
 import cx from "classnames";
+import { updateArr } from "../../../redux/actions";
 
 const Todoitems = (props) => {
-   
-  const toggleIsDone = (id) => {
-    const checkedArr = props.tasks.map((task) => {
-      const checkedTask = {
-        ...task,
-        isDone : task.id === id ? !task.isDone : task.isDone
-      }
-      return checkedTask
-    })
-    props.setTasks(checkedArr)
-  }
+  const { tasks, dispatch } = props;
 
-  const deleteTask = (id) => {
-    const filteredArr = props.tasks.filter((task) => task.id !== id);
-    props.setTasks(filteredArr);
+  const deleteToDO = (id) => {
+    const filteredArr = tasks.filter((task) => task.id !== id);
+    dispatch(updateArr(filteredArr));
   };
 
+  const toggleIsDone = (id) => {
+    const checkedArr = tasks.map((task) => {
+      const checkedTask = {
+        ...task,
+        isDone: task.id === id ? !task.isDone : task.isDone,
+      };
+      return checkedTask;
+    });
+    dispatch(updateArr(checkedArr));
+  };
   return (
-    <div>
-      {props.tasks.map((task) => {
+    <div className={styles.tasksWrapper}>
+      {tasks.map((task) => {
         const classnames = cx({
-          [styles.done]: task.isDone,
+          [styles.doneTask]: task.isDone,
         });
-
         return (
-          <div id={task.id} className={styles.task} key={task.id}>
+          <div className={styles.task} id={task.id} key={task.id}>
             <input
+              className={styles.checkbox}
               type="checkbox"
-              checked={task.isDone}
-              value={task.isDone ? 'true': 'false'}
               onChange={() => toggleIsDone(task.id)}
             />
-            <p className={classnames}>{task.text}</p>
-            <button
-              onClick={() => {
-                deleteTask(task.id);
-              }}
-            >
+            <p className={classnames}>{task.body}</p>
+            <button onClick={() => deleteToDO(task.id)}>
               <i className="fa fa-trash"></i>
             </button>
           </div>

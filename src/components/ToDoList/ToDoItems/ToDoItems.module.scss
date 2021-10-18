@@ -1,15 +1,26 @@
+.tasksWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 0 10px;}
+
+
 .task {
   display: flex;
   border: 1px solid rgb(121, 121, 121);
-  width: 500px;
-  margin: 10px auto;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
+  color: whitesmoke;
+  overflow-x: hidden;
+  overflow-y: auto;
+  word-break: break-all;
+  margin: 10px;
 }
 
-.done {
+.doneTask {
   text-decoration: line-through;
   color: rgba(0, 0, 0, 0.582);
 }

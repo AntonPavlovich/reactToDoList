@@ -1,36 +1,37 @@
+.formWrapper {
+  text-align: center;
+}
+
+.heading {
+  margin-bottom: 15px;
+  font-family: monospace;
+  color: whitesmoke;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
 }
 
-.input{
-  width: 500px;
-  height: 60px;
-  word-break: break-all;
+.input {
+  width: 80%;
+  height: 50px;
   font-size: 25px;
-  vertical-align: baseline;
-  word-wrap: break-word;
 }
-
-.errMessage {
-  color: red;
-}
-
-.addTaskBtn {
-  margin-top: 20px;
+.btn {
+  margin-top: 10px;
   width: 50px;
   height: 50px;
-  color :white;
-  font-size: 35px;
   border-radius: 50%;
+  border: none;
   outline: none;
-  border:none;
-  background-color: rgba(160, 158, 158, 0.438);
-  transition: background-color ease-in-out 0.3s;
+  color: white;
+  background-color: rgba(83, 83, 182, 0.644);
+  transition: background-color ease-in 0.3s, transform ease-in 0.4s;
   &:hover {
-  background-color: rgba(114, 112, 112, 0.753);
-
+    background-color: rgb(70, 70, 202);
+    transform: rotate(180deg);
   }
+
 }

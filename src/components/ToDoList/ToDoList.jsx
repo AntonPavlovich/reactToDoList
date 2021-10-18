@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import ToDoInput from "./ToDoInput/ToDoInput";
+import React,{ useReducer } from "react";
+import { updateArr } from "../../redux/actions";
+import { tasksReducer } from "../../redux/tasksReducer";
+import Todoinput from "./ToDoInput/ToDoInput";
 import Todoitems from "./ToDoItems/ToDoItems";
 
+import styles from './ToDoList.module.scss'
+
 const Todolist = () => {
-  const [tasks, setTasks] = useState([]);
+ 
+  const [state, dispatch] = useReducer(tasksReducer, { tasks: [] });
 
-  const createTask = (text) => {
-    const task = {
-      id: new Date(),
-      text: text,
-      isDone : false
+  const addTask = (text) => {
+    const newTask = {
+      id: Date.now(),
+      body: text,
+      isDone: false,
     };
-
-    setTasks([...tasks, task]);
+    dispatch(updateArr([...state.tasks, newTask]));
   };
 
-
-
-  return (
-    <div>
-      <ToDoInput createTask={createTask} />
-      <Todoitems tasks={tasks} setTasks={setTasks} />
-    </div>
-  );
+  return <div className={styles.toDoWrapper}>
+    <Todoinput addTask={addTask}/>
+    <Todoitems tasks={state.tasks} dispatch = {dispatch}/>
+  </div>;
 };
 
 export default Todolist;
